@@ -52,7 +52,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             child: Column(
               children: [
                 Text(
-                  widget.recipeDetails.list.first.title,
+                  widget.recipeDetails.list.first.title.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xff0c9173),

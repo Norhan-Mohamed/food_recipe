@@ -16,13 +16,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.transparent,
           leading: Transform.rotate(
             angle: 90,
             child: IconButton(
               icon: Icon(
                 Icons.equalizer_sharp,
                 color: Color(0xff0c9173),
-                size: 15,
+                size: 25,
               ),
               onPressed: null,
             ),
@@ -30,6 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(
             'Favourite Recipe ',
             style: TextStyle(
+                fontSize: 25,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1,
                 color: Color(0xff0c9173)),
@@ -40,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: const Icon(
                 Icons.search,
                 color: Color(0xff0c9173),
+                size: 25,
               ),
               onPressed: () {},
             ),
@@ -75,7 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
                                   child: Image.network(
-                                    snapShot.data!.list.first.foodImage,
+                                    snapShot.data!.list.first.foodImage
+                                        .toString(),
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -84,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 5,
                               ),
                               Text(
-                                snapShot.data!.list.first.title,
+                                snapShot.data!.list.first.title.toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: Colors.black,
