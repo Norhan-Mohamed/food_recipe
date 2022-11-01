@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
                                   child: Image.network(
-                                    snapShot.data!.list.first.foodImage,
+                                    snapShot.data!.list!.first!.foodImage!,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 5,
                               ),
                               Text(
-                                snapShot.data!.list.first.title,
+                                snapShot.data!.list!.first!.title!,
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: Colors.black,
