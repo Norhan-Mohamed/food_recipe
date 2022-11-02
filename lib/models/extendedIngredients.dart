@@ -1,14 +1,14 @@
 class ExtendedIngredients {
-  late int id;
-  late String aisle;
-  late String image;
-  late String consistency;
-  late String name;
-  late String nameClean;
-  late String original;
-  late String originalName;
-  late int amount;
-  late String unit;
+  late int? id;
+  late String? aisle;
+  late String? image;
+  late String? consistency;
+  late String? name;
+  late String? nameClean;
+  late String? original;
+  late String? originalName;
+  late int? amount;
+  late String? unit;
   late List meta = [];
   // late List<>measure;
 

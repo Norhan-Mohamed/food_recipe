@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/api.dart';
-import 'package:food_recipe_app/models/recipeResponse.dart';
+import 'package:food_recipe_app/models/discription.dart';
+import 'package:food_recipe_app/models/recipeDetails.dart';
 
+import '../models/recipeResponse.dart';
 import 'detailsScreeen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,14 +13,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<RecipeResponse> recipes = [];
+  List<RecipeDetails> recipes = [];
+  List<Description> descriptions = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: Transform.rotate(
-            angle: 90,
+            angle: 80,
             child: IconButton(
               icon: Icon(
                 Icons.equalizer_sharp,
@@ -29,9 +32,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           title: Text(
-            'Favourite Recipe ',
+            ' Recipes ',
             style: TextStyle(
-                fontSize: 25,
+                fontSize: 30,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1,
                 color: Color(0xff0c9173)),
@@ -54,13 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
               print(snapShot.error.toString());
             }
             if (snapShot.hasData) {
-              recipes = snapShot.data! as List<RecipeResponse>;
+              recipes = snapShot.data! as List<RecipeDetails>;
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemBuilder: (context, index) {
+                    RecipeDetails recipeDetails = recipes[index];
+                    Description descriptionF = descriptions[index];
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -71,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
-                                          recipes as RecipeResponse)));
+                                          recipeDetails, descriptionF)));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(

@@ -22,14 +22,14 @@ class Description {
   late String? sourceName;
   late double? pricePerServing;
   late List<ExtendedIngredients> extendedIngredients;
-  late int id;
-  late String title;
-  late int readyInMinutes;
-  late int servings;
-  late String sourceUrl;
-  late String image;
-  late String imageType;
-  late String summary;
+  late int? id;
+  late String? title;
+  late int? readyInMinutes;
+  late int? servings;
+  late String? sourceUrl;
+  late String? image;
+  late String? imageType;
+  late String? summary;
   late List<DishType> dishType;
 
   Description({
