@@ -82,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
-                                  child: Image.network(
-                                    snapShot.data!.list.first.foodImage
-                                        .toString(),
+                                  child: Image(
+                                    image: snapShot.data!.list.first.foodImage
+                                        .toString() as ImageProvider,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
