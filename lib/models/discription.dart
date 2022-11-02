@@ -21,7 +21,7 @@ class Description {
   late String? license;
   late String? sourceName;
   late double? pricePerServing;
-  late List<ExtendedIngredients> extendedIngredients;
+  late List<ExtendedIngredients>? extendedIngredients;
   late int? id;
   late String? title;
   late int? readyInMinutes;
@@ -30,7 +30,7 @@ class Description {
   late String? image;
   late String? imageType;
   late String? summary;
-  late List<DishType> dishType;
+  late List<DishType>? dishType;
 
   Description({
     required this.image,
@@ -76,7 +76,7 @@ class Description {
     this.dishType = map['dishType'];
     this.extendedIngredients = [];
     (map['extendedIngredients'] as List).forEach((element) {
-      this.extendedIngredients.add(ExtendedIngredients.fromMap(element));
+      this.extendedIngredients!.add(ExtendedIngredients.fromMap(element));
     });
     this.gaps = map['gaps'];
     this.glutenFree = map['glutenFree'];
@@ -100,7 +100,7 @@ class Description {
 
   Map<String, dynamic> toMap() {
     List<Map> tmpList = [];
-    this.extendedIngredients.forEach((element) {
+    this.extendedIngredients!.forEach((element) {
       tmpList.add(element.toMap());
     });
     Map<String, dynamic> map = {

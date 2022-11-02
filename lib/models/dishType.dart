@@ -1,3 +1,3 @@
 class DishType {
-  List dishType = ["lunch", "main course", "main dish", "dinner"];
+  List? dishType = ["lunch", "main course", "main dish", "dinner"];
 }

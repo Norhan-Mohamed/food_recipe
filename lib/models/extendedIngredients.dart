@@ -9,7 +9,7 @@ class ExtendedIngredients {
   late String? originalName;
   late int? amount;
   late String? unit;
-  late List meta = [];
+  late List? meta = [];
   // late List<>measure;
 
   ExtendedIngredients({
