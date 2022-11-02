@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: Transform.rotate(
-            angle: 80,
+            angle: 180,
             child: IconButton(
               icon: Icon(
                 Icons.equalizer_sharp,
