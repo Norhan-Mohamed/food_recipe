@@ -27,7 +27,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
           IconButton(
               icon: const Icon(Icons.favorite_border),
               onPressed: () async {
-                /* await RecipeProvider.instance.insert(Description(
+                // await RecipeProvider.instance.insert.
+                /*(Description(
                       image: widget.description.image,
                     title: widget.description.title,
                     imageType: widget.description.imageType,
@@ -82,7 +83,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               }
               if (snapShot.hasData) {
                 return Column(children: [
-                  Image(image: snapShot.data!.image as ImageProvider),
+                  Image.network(snapShot.data!.image.toString()),
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Column(

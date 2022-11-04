@@ -26,24 +26,23 @@ class RecipeResponse {
     print('---6--');
     print(map);
 
-    ((map['list'] ?? []) as List<dynamic>).forEach((element) {
+    ((map['results'] ?? []) as List<dynamic>).forEach((element) {
       print('----5--');
       this.list!.add(RecipeDetails.fromMap(element));
       print('---4-');
     });
-
-    Map<String, dynamic> toMap() {
-      List<Map> tmpList = [];
-      this.list!.forEach((element) {
-        tmpList.add(element.toMap());
-      });
-      Map<String, dynamic> map = {
-        "offset": this.offset,
-        "number": this.number,
-        "totalResults": this.totalResults,
-        "list": tmpList,
-      };
-      return map;
-    }
+  }
+  Map<String, dynamic> toMap() {
+    List<Map> tmpList = [];
+    this.list!.forEach((element) {
+      tmpList.add(element.toMap());
+    });
+    Map<String, dynamic> map = {
+      "offset": this.offset,
+      "number": this.number,
+      "totalResults": this.totalResults,
+      "list": tmpList,
+    };
+    return map;
   }
 }

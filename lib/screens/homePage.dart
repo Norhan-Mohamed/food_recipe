@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisSpacing: 20),
                   itemCount: snapShot.data!.list!.length,
                   itemBuilder: (context, index) {
+                    print(snapShot.data!.list![index].image);
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -79,9 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
-                                  child: Image(
-                                    image: snapShot.data!.list![index].image
-                                        .toString() as ImageProvider,
+                                  child: Image.network(
+                                    snapShot.data!.list![index].image
+                                        .toString(),
                                     fit: BoxFit.fill,
                                   ),
                                 ),

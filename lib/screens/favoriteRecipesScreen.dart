@@ -74,9 +74,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
-                                  child: Image(
-                                    image: snapShot.data![index].image
-                                        .toString() as ImageProvider,
+                                  child: Image.network(
+                                    snapShot.data![index].image.toString(),
                                     fit: BoxFit.fill,
                                   ),
                                 ),

@@ -2,9 +2,9 @@ import 'package:food_recipe_app/models/discription.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-final String recipeTitle = 'title';
-final String recipeId = 'id';
-final String recipeImage = 'image';
+final String title = 'title';
+final String id = 'id';
+final String image = 'image';
 
 class RecipeProvider {
   late Database db;
@@ -19,10 +19,10 @@ class RecipeProvider {
     db = await openDatabase(join(await getDatabasesPath(), 'contacts.db'),
         version: 1, onCreate: (Database db, int version) async {
       await db.execute('''
-create table ContactTable ( 
-  $recipeId integer primary key autoincrement,
-  $recipeTitle text not null,
-  $recipeImage text not null,
+create table Table ( 
+  $id integer ,
+  $title text not null,
+  $image text not null,
   )
 ''');
     });
@@ -48,8 +48,7 @@ create table ContactTable (
   }
 
   Future<int> delete(int? id) async {
-    return await db
-        .delete('RecipeTable', where: '$recipeId = ?', whereArgs: [id]);
+    return await db.delete('RecipeTable', where: '$id = ?', whereArgs: [id]);
   }
 
   Future close() async => db.close();
