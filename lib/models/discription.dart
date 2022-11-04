@@ -1,4 +1,3 @@
-import 'package:food_recipe_app/models/dishType.dart';
 import 'package:food_recipe_app/models/extendedIngredients.dart';
 
 class Description {
@@ -6,14 +5,14 @@ class Description {
   late bool vegan;
   late bool glutenFree;
   late bool dairyFree;
-  late bool veryHealthy;
+  //late bool veryHealthy;
   late bool cheap;
   late bool veryPopular;
   late bool sustainable;
   late bool lowFodmap;
   late int? weightWatcherSmartPoints;
   late String? gaps;
-  late int? preparationMinutes;
+  //late int? preparationMinutes;
   late int? cookingMinutes;
   late int? aggregateLikes;
   late int? healthScore;
@@ -30,7 +29,7 @@ class Description {
   late String? image;
   late String? imageType;
   late String? summary;
-  late List<DishType>? dishType;
+  // late List<DishType>? dishType;
 
   Description({
     required this.image,
@@ -42,14 +41,13 @@ class Description {
     required this.cookingMinutes,
     required this.creditsText,
     required this.dairyFree,
-    required this.dishType,
     required this.extendedIngredients,
     required this.gaps,
     required this.glutenFree,
     required this.healthScore,
     required this.license,
     required this.lowFodmap,
-    required this.preparationMinutes,
+    // required this.preparationMinutes,
     required this.pricePerServing,
     required this.readyInMinutes,
     required this.servings,
@@ -59,7 +57,7 @@ class Description {
     required this.sustainable,
     required this.vegan,
     required this.vegetarian,
-    required this.veryHealthy,
+    //required this.veryHealthy,
     required this.veryPopular,
     required this.weightWatcherSmartPoints,
   });
@@ -67,35 +65,36 @@ class Description {
     this.image = map['image'];
     this.title = map['title'];
     this.imageType = map['imageType'];
-    this.id = map['id'];
-    this.aggregateLikes = map['aggregateLikes'];
+    this.id = int.parse(map['id'].toString());
+    this.aggregateLikes = int.parse(map['aggregateLikes'].toString());
     this.cheap = map['cheap'];
-    this.cookingMinutes = map['cookingMinutes'];
+    this.cookingMinutes = int.parse(map['cookingMinutes'].toString());
     this.creditsText = map['creditsText'];
     this.dairyFree = map['dairyFree'];
-    this.dishType = map['dishType'];
     this.extendedIngredients = [];
     (map['extendedIngredients'] as List).forEach((element) {
       this.extendedIngredients!.add(ExtendedIngredients.fromMap(element));
     });
     this.gaps = map['gaps'];
     this.glutenFree = map['glutenFree'];
-    this.healthScore = map['healthScore'];
+    this.healthScore = int.parse(map['healthScore'].toString());
     this.license = map['license'];
     this.lowFodmap = map['lowFodmap'];
-    this.preparationMinutes = map['preperationMinutes'];
-    this.pricePerServing = map['pricePerServing'];
-    this.readyInMinutes = map['readyInMinutes'];
-    this.servings = map['servings'];
+    //this.preparationMinutes = int.parse(map['preperationMinutes'].toString());
+    this.pricePerServing = double.parse(map['pricePerServing'].toString());
+
+    this.readyInMinutes = int.parse(map['readyInMinutes'].toString());
+    this.servings = int.parse(map['servings'].toString());
     this.sourceName = map['sourceName'];
     this.sourceUrl = map['sourceUrl'];
     this.summary = map['summary'];
     this.sustainable = map['sustainable'];
     this.vegan = map['vegan'];
     this.vegetarian = map['vegetarian'];
-    this.veryHealthy = map['veyrHeahthy'];
+    // this.veryHealthy = map['veyrHeahthy'];
     this.veryPopular = map['veryPopular'];
-    this.weightWatcherSmartPoints = map['weightWatcherSmartPoints'];
+    this.weightWatcherSmartPoints =
+        int.parse(map['weightWatcherSmartPoints'].toString());
   }
 
   Map<String, dynamic> toMap() {
@@ -113,14 +112,14 @@ class Description {
       'cookingMinutes': this.cookingMinutes,
       "creditsText": this.creditsText,
       "dairyFree": this.dairyFree,
-      "dishType": this.dishType,
+      //"dishType": this.dishType,
       "extendedIngredients": tmpList,
       "gaps": this.gaps,
       "glutenFree": this.glutenFree,
       "healthScore": this.healthScore,
       "license": this.license,
       "lowFodmap": this.lowFodmap,
-      "preperationMinutes": this.preparationMinutes,
+      //"preperationMinutes": this.preparationMinutes,
       "pricePerServing": this.pricePerServing,
       "readyInMinutes": this.readyInMinutes,
       "servings": this.servings,
@@ -130,7 +129,7 @@ class Description {
       "sustainable": this.sustainable,
       "vegan": this.vegan,
       "vegetarian": this.vegetarian,
-      "veyrHeahthy": this.veryHealthy,
+      //"veyrHeahthy": this.veryHealthy,
       "veryPopular": this.veryPopular,
       "weightWatcherSmartPoints": this.weightWatcherSmartPoints,
     };

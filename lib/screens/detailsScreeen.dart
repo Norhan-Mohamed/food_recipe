@@ -4,72 +4,90 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_app/api.dart';
 import 'package:food_recipe_app/models/discription.dart';
 
+import '../helper.dart';
+import '../models/recipeDetails.dart';
+import 'favoriteRecipesScreen.dart';
+
 class DetailsScreen extends StatefulWidget {
   final int? id;
-  DetailsScreen(this.id);
+  final String? title;
+  final String? image;
+  final String? imageType;
+
+  DetailsScreen(this.id, this.title, this.imageType, this.image);
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  late Description description;
+  late RecipeDetails recipeDetails;
+  bool isFavourite = false;
+  Color _favIconColor = Colors.black;
+  void isFavoritePressed() {
+    isFavourite = !isFavourite;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Color(0xff0c9173),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Color(0xff0c9173),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         actions: [
           IconButton(
-              icon: const Icon(Icons.favorite_border),
-              onPressed: () async {
-                // await RecipeProvider.instance.insert.
-                /*(Description(
-                      image: widget.description.image,
-                    title: widget.description.title,
-                    imageType: widget.description.imageType,
-                    id: widget.description.id,
-                    aggregateLikes: widget.description.aggregateLikes,
-                    cheap: widget.description.cheap,
-                    cookingMinutes: widget.description.cookingMinutes,
-                    creditsText: widget.description.creditsText,
-                    dairyFree: widget.description.dairyFree,
-                    dishType: widget.description.dishType,
-                    extendedIngredients: widget.description.extendedIngredients,
-                    gaps: widget.description.gaps,
-                    glutenFree: widget.description.glutenFree,
-                    healthScore: widget.description.healthScore,
-                    license: widget.description.license,
-                    lowFodmap: widget.description.lowFodmap,
-                    preparationMinutes: widget.description.preparationMinutes,
-                    pricePerServing: widget.description.pricePerServing,
-                    readyInMinutes: widget.description.readyInMinutes,
-                    servings: widget.description.servings,
-                    sourceName: widget.description.sourceName,
-                    sourceUrl: widget.description.sourceUrl,
-                    summary: widget.description.summary,
-                    sustainable: widget.description.sustainable,
-                    vegan: widget.description.vegan,
-                    vegetarian: widget.description.vegetarian,
-                    veryHealthy: widget.description.veryHealthy,
-                    veryPopular: widget.description.veryPopular,
-                    weightWatcherSmartPoints:
-                        widget.description.weightWatcherSmartPoints));*/
-              }),
+            color: _favIconColor,
+            icon: const Icon(
+              Icons.favorite_border,
+            ),
+            onPressed: () async {
+              isFavoritePressed();
+              setState(() {
+                if (_favIconColor == Colors.black) {
+                  _favIconColor = Colors.red;
+                } else {
+                  _favIconColor = Colors.black;
+                }
+              });
+              print("is favourite");
+              await RecipeProvider.instance.insert(RecipeDetails(
+                  id: widget.id,
+                  title: widget.title,
+                  image: widget.image,
+                  imageType: widget.imageType));
+            },
+          ),
           IconButton(
-            icon: const Icon(Icons.play_arrow_outlined),
+            icon: const Icon(
+              Icons.play_arrow_outlined,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => FavoriteRecipesScreen()));
+            },
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.black,
+            ),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.share),
+            icon: const Icon(
+              Icons.share,
+              color: Colors.black,
+            ),
             onPressed: () {},
           ),
         ],
@@ -85,7 +103,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 return Column(children: [
                   Image.network(snapShot.data!.image.toString()),
                   Container(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(10),
                     child: Column(
                       children: [
                         Text(
@@ -95,6 +113,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             color: Color(0xff0c9173),
                           ),
                         ),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -102,7 +123,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
-                              child: Text(('easy')),
+                              child: Text(
+                                'easy',
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                             Container(
                                 decoration: BoxDecoration(
@@ -112,11 +136,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(Icons.timer_sharp),
+                                    Icon(
+                                      Icons.timer_sharp,
+                                      size: 20,
+                                    ),
                                     Text(
                                       snapShot.data!.readyInMinutes.toString(),
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 10),
+                                          color: Colors.grey, fontSize: 20),
                                     )
                                   ],
                                 )),
@@ -132,28 +159,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       snapShot.data!.weightWatcherSmartPoints
                                           .toString(),
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 10),
+                                          color: Colors.black, fontSize: 15),
                                     ),
                                     Text(
                                       'Ingredients',
                                       style: TextStyle(
-                                          color: Colors.grey, fontSize: 15),
+                                          color: Colors.black, fontSize: 20),
                                     )
                                   ],
                                 )),
                           ],
                         ),
                         Divider(
-                          height: 10,
+                          height: 15,
                           thickness: 2,
                         ),
                         Text(
                           snapShot.data!.summary.toString(),
                           style: TextStyle(
-                              color: Colors.black26,
-                              fontSize: 25,
-                              letterSpacing: 1,
-                              wordSpacing: 2),
+                            color: Colors.black,
+                            fontSize: 15,
+                            letterSpacing: 1,
+                          ),
                         ),
                         Divider(
                           height: 10,
@@ -163,10 +190,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           children: [
                             Text(
                               snapShot.data!.servings.toString() + 'serving',
-                              style: TextStyle(color: Colors.black26),
+                              style: TextStyle(color: Colors.black),
                             ),
                             SizedBox(
-                              width: 300,
+                              width: 250,
                             ),
                             Container(
                               child: Icon(

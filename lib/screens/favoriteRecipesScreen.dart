@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/helper.dart';
-import 'package:food_recipe_app/models/discription.dart';
+import 'package:food_recipe_app/models/recipeDetails.dart';
 
-class DetailsScreen extends StatefulWidget {
-  DetailsScreen(int? id);
+import '../helper.dart';
+import 'detailsScreeen.dart';
 
-  State<DetailsScreen> createState() => _DetailsScreenState();
+class FavoriteRecipesScreen extends StatefulWidget {
+  State<FavoriteRecipesScreen> createState() => _FavoriteRecipesScreenState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.transparent,
           leading: Transform.rotate(
             angle: 90,
@@ -20,7 +22,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               icon: Icon(
                 Icons.equalizer_sharp,
                 color: Color(0xff0c9173),
-                size: 25,
+                size: 20,
               ),
               onPressed: null,
             ),
@@ -28,7 +30,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           title: Text(
             ' Favourite Recipes ',
             style: TextStyle(
-                fontSize: 30,
+                fontSize: 20,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1,
                 color: Color(0xff0c9173)),
@@ -41,10 +43,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 color: Color(0xff0c9173),
                 size: 25,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
           ]),
-      body: FutureBuilder<List<Description>>(
+      body: FutureBuilder<List<RecipeDetails>>(
           future: RecipeProvider.instance.getFavRecipes(),
           builder: (context, snapShot) {
             if (snapShot.hasError) {
@@ -65,10 +69,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
+                                iconSize: 120,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
-                                          snapShot.data![index].id)));
+                                            snapShot.data![index].id,
+                                            snapShot.data![index].title,
+                                            snapShot.data![index].image,
+                                            snapShot.data![index].imageType,
+                                          )));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(

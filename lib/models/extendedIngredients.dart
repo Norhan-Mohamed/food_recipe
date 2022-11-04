@@ -7,10 +7,8 @@ class ExtendedIngredients {
   late String? nameClean;
   late String? original;
   late String? originalName;
-  late int? amount;
+  late double? amount;
   late String? unit;
-  late List? meta = [];
-  // late List<>measure;
 
   ExtendedIngredients({
     required this.image,
@@ -19,7 +17,6 @@ class ExtendedIngredients {
     required this.id,
     required this.amount,
     required this.consistency,
-    required this.meta,
     required this.nameClean,
     required this.original,
     required this.originalName,
@@ -29,10 +26,9 @@ class ExtendedIngredients {
     this.image = map['image'];
     this.name = map['name'];
     this.aisle = map['aisle'];
-    this.id = map['id'];
-    this.amount = map['amount'];
+    this.id = int.parse(map['id'].toString());
+    this.amount = double.parse(map['amount'].toString());
     this.consistency = map['consistency'];
-    this.meta = map['meta'];
     this.nameClean = map['nameClean'];
     this.original = map['original'];
     this.originalName = map['originalName'];
@@ -46,7 +42,6 @@ class ExtendedIngredients {
       "  id": this.id,
       "amount  ": this.amount,
       " consistency ": this.consistency,
-      " meta ": this.meta,
       "nameClean  ": this.nameClean,
       "original  ": this.original,
       "originalName  ": this.originalName,

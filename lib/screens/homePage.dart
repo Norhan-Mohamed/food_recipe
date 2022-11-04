@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/api.dart';
+import 'package:food_recipe_app/models/recipeDetails.dart';
 
 import '../models/recipeResponse.dart';
 import 'detailsScreeen.dart';
@@ -16,8 +17,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
+          elevation: 0,
           leading: Transform.rotate(
-            angle: 120,
+            angle: 85,
             child: IconButton(
               icon: Icon(
                 Icons.equalizer_sharp,
@@ -55,15 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
             if (snapShot.hasData) {
               print(snapShot.data);
 
-              var recipes = snapShot.data!;
+              List<RecipeDetails>? recipes = snapShot.data!.results;
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
-                  itemCount: snapShot.data!.list!.length,
+                  itemCount: snapShot.data!.results!.length,
                   itemBuilder: (context, index) {
-                    print(snapShot.data!.list![index].image);
+                    print(snapShot.data!.results![index].image);
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -71,17 +73,22 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
+                                iconSize: 115,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
-                                          recipes.list![index].id)));
+                                          snapShot.data!.results![index].id,
+                                          snapShot.data!.results![index].image,
+                                          snapShot.data!.results![index].title,
+                                          snapShot.data!.results![index]
+                                              .imageType)));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
                                   child: Image.network(
-                                    snapShot.data!.list![index].image
+                                    snapShot.data!.results![index].image
                                         .toString(),
                                     fit: BoxFit.fill,
                                   ),
@@ -91,12 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 5,
                               ),
                               Text(
-                                snapShot.data!.list![index].title.toString(),
+                                snapShot.data!.results![index].title.toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 15),
+                                    fontSize: 10),
                               ),
                             ],
                           ),

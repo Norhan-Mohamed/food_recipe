@@ -10,16 +10,10 @@ class RecipeDetails {
     required this.imageType,
   });
   RecipeDetails.fromMap(Map<String, dynamic> map) {
-    print('----');
     this.id = map['id'];
-    print('---1---');
     this.title = map['title'];
-    print('---2---');
-    this.image = map['foodImage'];
-    print('---3---');
-
+    this.image = map['image'];
     this.imageType = map['imageType'];
-    print('---4---');
   }
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
