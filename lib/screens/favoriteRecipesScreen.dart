@@ -10,22 +10,28 @@ class FavoriteRecipesScreen extends StatefulWidget {
 }
 
 class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
+  int _selsctedIndex = 1;
+  PageController pageController = PageController();
+  void onTapped(int index) {
+    setState(() {
+      _selsctedIndex = index;
+    });
+    pageController.jumpToPage(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: Transform.rotate(
-            angle: 90,
-            child: IconButton(
-              icon: Icon(
-                Icons.equalizer_sharp,
-                color: Color(0xff0c9173),
-                size: 20,
-              ),
-              onPressed: null,
+          leading: IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: Color(0xff0c9173),
+              size: 20,
             ),
+            onPressed: null,
           ),
           title: Text(
             ' Favourite Recipes ',
@@ -113,6 +119,17 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
               ),
             );
           }),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border_outlined), label: 'Favorites'),
+        ],
+        currentIndex: _selsctedIndex,
+        selectedItemColor: Color(0xff0c9173),
+        unselectedItemColor: Colors.black26,
+        onTap: onTapped,
+      ),
     );
   }
 }
