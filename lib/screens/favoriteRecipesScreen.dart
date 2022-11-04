@@ -3,6 +3,8 @@ import 'package:food_recipe_app/helper.dart';
 import 'package:food_recipe_app/models/discription.dart';
 
 class DetailsScreen extends StatefulWidget {
+  DetailsScreen(int? id);
+
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
@@ -54,6 +56,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       maxCrossAxisExtent: 200,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
+                  itemCount: snapShot.data!.length,
                   itemBuilder: (context, index) {
                     return Container(
                         padding: const EdgeInsets.all(8),
@@ -64,15 +67,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               IconButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetailsScreen()));
+                                      builder: (context) => DetailsScreen(
+                                          snapShot.data![index].id)));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
                                   child: Image(
-                                    image: snapShot.data!.first.image.toString()
-                                        as ImageProvider,
+                                    image: snapShot.data![index].image
+                                        .toString() as ImageProvider,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -81,7 +85,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 height: 5,
                               ),
                               Text(
-                                snapShot.data!.first.title.toString(),
+                                snapShot.data![index].title.toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: Colors.black,

@@ -11,8 +11,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // List<RecipeResponse> recipes = [];
-  //List<Description> descriptions = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisSpacing: 20),
                   itemCount: snapShot.data!.list!.length,
                   itemBuilder: (context, index) {
-                    // RecipeResponse recipeResponse = recipes[index];
-                    //   Description descriptionF = descriptions[index];
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -77,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
-                                          recipes.list!.first.id)));
+                                          recipes.list![index].id)));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(

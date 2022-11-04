@@ -14,12 +14,6 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   late Description description;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    //  String image = widget.description.image;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +27,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
           IconButton(
               icon: const Icon(Icons.favorite_border),
               onPressed: () async {
-                /*   await RecipeProvider.instance.insert(Description(
-                    image: widget.description.image,
+                /* await RecipeProvider.instance.insert(Description(
+                      image: widget.description.image,
                     title: widget.description.title,
                     imageType: widget.description.imageType,
                     id: widget.description.id,
@@ -81,7 +75,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       ),
       body: SingleChildScrollView(
         child: FutureBuilder<Description>(
-            future: Api().getDataDetails(),
+            future: Api().getDataDetails(widget.id),
             builder: (context, snapShot) {
               if (snapShot.hasError) {
                 print(snapShot.error.toString());

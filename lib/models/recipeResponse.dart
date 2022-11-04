@@ -24,12 +24,12 @@ class RecipeResponse {
 
     this.list = [];
     print('---6--');
+    print(map);
+
     ((map['list'] ?? []) as List<dynamic>).forEach((element) {
       print('----5--');
-
       this.list!.add(RecipeDetails.fromMap(element));
       print('---4-');
-      print(map["list"]);
     });
 
     Map<String, dynamic> toMap() {
