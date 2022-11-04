@@ -1,13 +1,10 @@
 import 'package:food_recipe_app/models/recipeDetails.dart';
 
-import 'discription.dart';
-
 class RecipeResponse {
   late List<RecipeDetails>? list;
   late int? offset;
   late int? number;
   late int? totalResults;
-  late List<Description>? description;
 
   RecipeResponse({
     required this.list,
@@ -26,9 +23,13 @@ class RecipeResponse {
     print('---3-');
 
     this.list = [];
-    (map['list'] as List).forEach((element) {
+    print('---6--');
+    ((map['list'] ?? []) as List<dynamic>).forEach((element) {
+      print('----5--');
+
       this.list!.add(RecipeDetails.fromMap(element));
       print('---4-');
+      print(map["list"]);
     });
 
     Map<String, dynamic> toMap() {
@@ -42,7 +43,6 @@ class RecipeResponse {
         "totalResults": this.totalResults,
         "list": tmpList,
       };
-
       return map;
     }
   }

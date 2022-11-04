@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/api.dart';
-import 'package:food_recipe_app/models/discription.dart';
-import 'package:food_recipe_app/models/recipeDetails.dart';
 
 import '../models/recipeResponse.dart';
 import 'detailsScreeen.dart';
@@ -13,15 +11,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<RecipeDetails> recipes = [];
-  List<Description> descriptions = [];
+  // List<RecipeResponse> recipes = [];
+  //List<Description> descriptions = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: Transform.rotate(
-            angle: 180,
+            angle: 120,
             child: IconButton(
               icon: Icon(
                 Icons.equalizer_sharp,
@@ -57,15 +55,18 @@ class _MyHomePageState extends State<MyHomePage> {
               print(snapShot.error.toString());
             }
             if (snapShot.hasData) {
-              recipes = snapShot.data! as List<RecipeDetails>;
+              print(snapShot.data);
+
+              var recipes = snapShot.data!;
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
+                  itemCount: snapShot.data!.list!.length,
                   itemBuilder: (context, index) {
-                    RecipeDetails recipeDetails = recipes[index];
-                    Description descriptionF = descriptions[index];
+                    // RecipeResponse recipeResponse = recipes[index];
+                    //   Description descriptionF = descriptions[index];
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -76,14 +77,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
-                                          recipeDetails, descriptionF)));
+                                          recipes.list!.first.id)));
                                 },
                                 icon: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(15.0))),
                                   child: Image(
-                                    image: snapShot.data!.list!.first.foodImage
+                                    image: snapShot.data!.list![index].image
                                         .toString() as ImageProvider,
                                     fit: BoxFit.fill,
                                   ),
@@ -93,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 5,
                               ),
                               Text(
-                                snapShot.data!.list!.first.title.toString(),
+                                snapShot.data!.list![index].title.toString(),
                                 maxLines: 3,
                                 style: TextStyle(
                                     color: Colors.black,

@@ -1,12 +1,12 @@
 class RecipeDetails {
   late int? id;
   late String? title;
-  late String? foodImage;
+  late String? image;
   late String? imageType;
   RecipeDetails({
     required this.id,
     required this.title,
-    required this.foodImage,
+    required this.image,
     required this.imageType,
   });
   RecipeDetails.fromMap(Map<String, dynamic> map) {
@@ -15,7 +15,7 @@ class RecipeDetails {
     print('---1---');
     this.title = map['title'];
     print('---2---');
-    this.foodImage = map['foodImage'];
+    this.image = map['foodImage'];
     print('---3---');
 
     this.imageType = map['imageType'];
@@ -25,7 +25,7 @@ class RecipeDetails {
     Map<String, dynamic> map = {
       "id": this.id,
       "title": this.title,
-      "foodImage": this.foodImage,
+      "foodImage": this.image,
       "imageTyoe": this.imageType,
     };
     return map;

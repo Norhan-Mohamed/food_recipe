@@ -2,20 +2,25 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:food_recipe_app/api.dart';
-import 'package:food_recipe_app/helper.dart';
 import 'package:food_recipe_app/models/discription.dart';
-import 'package:food_recipe_app/models/recipeDetails.dart';
 
 class DetailsScreen extends StatefulWidget {
-  final RecipeDetails recipeDetails;
-  final Description description;
-  DetailsScreen(this.recipeDetails, this.description);
+  final int? id;
+  DetailsScreen(this.id);
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  late Description description;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //  String image = widget.description.image;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           IconButton(
               icon: const Icon(Icons.favorite_border),
               onPressed: () async {
-                await RecipeProvider.instance.insert(Description(
+                /*   await RecipeProvider.instance.insert(Description(
                     image: widget.description.image,
                     title: widget.description.title,
                     imageType: widget.description.imageType,
@@ -58,7 +63,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     veryHealthy: widget.description.veryHealthy,
                     veryPopular: widget.description.veryPopular,
                     weightWatcherSmartPoints:
-                        widget.description.weightWatcherSmartPoints));
+                        widget.description.weightWatcherSmartPoints));*/
               }),
           IconButton(
             icon: const Icon(Icons.play_arrow_outlined),

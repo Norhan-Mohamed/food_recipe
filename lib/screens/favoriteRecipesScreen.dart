@@ -24,7 +24,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             ),
           ),
           title: Text(
-            ' Recipes ',
+            ' Favourite Recipes ',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
