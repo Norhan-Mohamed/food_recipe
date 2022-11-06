@@ -10,15 +10,6 @@ class FavoriteRecipesScreen extends StatefulWidget {
 }
 
 class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
-  int _selsctedIndex = 1;
-  PageController pageController = PageController();
-  void onTapped(int index) {
-    setState(() {
-      _selsctedIndex = index;
-    });
-    pageController.jumpToPage(index);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +40,7 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
                 color: Color(0xff0c9173),
                 size: 25,
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () {},
             ),
           ]),
       body: FutureBuilder<List<RecipeDetails>>(
@@ -68,6 +57,7 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
                       mainAxisSpacing: 20),
                   itemCount: snapShot.data!.length,
                   itemBuilder: (context, index) {
+                    print(snapShot.data![index].image);
                     return Container(
                         padding: const EdgeInsets.all(8),
                         child: Center(
@@ -75,7 +65,7 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                iconSize: 120,
+                                iconSize: 90,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(
@@ -119,17 +109,6 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
               ),
             );
           }),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_outlined), label: 'Favorites'),
-        ],
-        currentIndex: _selsctedIndex,
-        selectedItemColor: Color(0xff0c9173),
-        unselectedItemColor: Colors.black26,
-        onTap: onTapped,
-      ),
     );
   }
 }

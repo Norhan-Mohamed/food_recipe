@@ -24,7 +24,7 @@ create table RecipeTable (
   $id integer ,
   $title text not null,
   $image text not null,
-  $imageType text not null,
+  $imageType text not null
   )
 ''');
     });

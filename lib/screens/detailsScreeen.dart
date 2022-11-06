@@ -6,7 +6,6 @@ import 'package:food_recipe_app/models/discription.dart';
 
 import '../helper.dart';
 import '../models/recipeDetails.dart';
-import 'favoriteRecipesScreen.dart';
 
 class DetailsScreen extends StatefulWidget {
   final int? id;
@@ -71,10 +70,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               Icons.play_arrow_outlined,
               color: Colors.black,
             ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => FavoriteRecipesScreen()));
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(

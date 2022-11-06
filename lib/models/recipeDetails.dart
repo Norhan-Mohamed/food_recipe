@@ -19,8 +19,8 @@ class RecipeDetails {
     Map<String, dynamic> map = {
       "id": this.id,
       "title": this.title,
-      "foodImage": this.image,
-      "imageTyoe": this.imageType,
+      "image": this.image,
+      "imageType": this.imageType,
     };
     return map;
   }
