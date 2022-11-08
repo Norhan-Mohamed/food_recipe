@@ -13,7 +13,7 @@ class DetailsScreen extends StatefulWidget {
   final String? image;
   final String? imageType;
 
-  DetailsScreen(this.id, this.title, this.imageType, this.image);
+  DetailsScreen(this.id, this.image, this.title, this.imageType);
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();

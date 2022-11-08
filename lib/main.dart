@@ -37,7 +37,6 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selsctedIndex = index;
     });
-    pageController.jumpToPage(index);
   }
 
   @override
