@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_app/helper.dart';
 import 'package:food_recipe_app/models/recipeDetails.dart';
 
-import '../helper.dart';
 import 'detailsScreeen.dart';
 
 class FavoriteRecipesScreen extends StatefulWidget {
@@ -88,6 +87,16 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
                               SizedBox(
                                 height: 5,
                               ),
+                              IconButton(
+                                  onPressed: () async {
+                                    await RecipeProvider.instance
+                                        .delete(snapShot.data![index].id);
+                                  },
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Color(0xff0c9173),
+                                    size: 10,
+                                  )),
                               Text(
                                 snapShot.data![index].title.toString(),
                                 maxLines: 3,
