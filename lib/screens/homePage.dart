@@ -57,9 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
               List<RecipeDetails>? recipes = snapShot.data!.results;
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
+                      maxCrossAxisExtent: 250,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 14),
                   itemCount: snapShot.data!.results!.length,
                   itemBuilder: (context, index) {
                     print(snapShot.data!.results![index].image);
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
-                                iconSize: 115,
+                                iconSize: 100,
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => DetailsScreen(

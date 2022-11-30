@@ -6,6 +6,7 @@ final String title = 'title';
 final String id = 'id';
 final String image = 'image';
 final String imageType = 'imageType';
+final String isFavorite = 'isFavorite';
 
 class RecipeProvider {
   late Database db;
@@ -24,7 +25,8 @@ create table RecipeTable (
   $id integer ,
   $title text not null,
   $image text not null,
-  $imageType text not null
+  $imageType text not null,
+  $isFavorite boolean
   )
 ''');
     });

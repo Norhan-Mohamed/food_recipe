@@ -51,63 +51,71 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
             if (snapShot.hasData) {
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
+                      maxCrossAxisExtent: 350,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 10),
                   itemCount: snapShot.data!.length,
                   itemBuilder: (context, index) {
                     print(snapShot.data![index].image);
-                    return Container(
-                        padding: const EdgeInsets.all(8),
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                iconSize: 90,
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DetailsScreen(
-                                            snapShot.data![index].id,
-                                            snapShot.data![index].title,
-                                            snapShot.data![index].image,
-                                            snapShot.data![index].imageType,
-                                          )));
-                                },
-                                icon: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(15.0))),
-                                  child: Image.network(
-                                    snapShot.data![index].image.toString(),
-                                    fit: BoxFit.fill,
+                    return Flexible(
+                      child: Container(
+                          padding: const EdgeInsets.all(8),
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  iconSize: 100,
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                            builder: (context) => DetailsScreen(
+                                                  snapShot.data![index].id,
+                                                  snapShot.data![index].title,
+                                                  snapShot.data![index].image,
+                                                  snapShot
+                                                      .data![index].imageType,
+                                                )));
+                                  },
+                                  icon: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15.0))),
+                                    child: Image.network(
+                                      snapShot.data![index].image.toString(),
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              IconButton(
-                                  onPressed: () async {
-                                    await RecipeProvider.instance
-                                        .delete(snapShot.data![index].id);
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Color(0xff0c9173),
-                                    size: 10,
-                                  )),
-                              Text(
-                                snapShot.data![index].title.toString(),
-                                maxLines: 3,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15),
-                              ),
-                            ],
-                          ),
-                        ));
+                                Row(children: [
+                                  IconButton(
+                                      onPressed: () async {
+                                        await RecipeProvider.instance
+                                            .delete(snapShot.data![index].id);
+                                      },
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Color(0xff0c9173),
+                                        size: 20,
+                                      )),
+                                  SizedBox(
+                                    width: 120,
+                                    child: Text(
+                                      snapShot.data![index].title.toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                ]),
+                              ],
+                            ),
+                          )),
+                    );
                   });
             }
             return Center(
