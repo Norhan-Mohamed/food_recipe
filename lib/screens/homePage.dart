@@ -64,10 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   itemBuilder: (context, index) {
                     print(snapShot.data!.results![index].image);
                     return Container(
+                        color: Color(0xffd0fee2),
                         padding: const EdgeInsets.all(8),
                         child: Center(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               IconButton(
                                 iconSize: 100,
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 icon: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(15.0))),
+                                          Radius.circular(25.0))),
                                   child: Image.network(
                                     snapShot.data!.results![index].image
                                         .toString(),
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 10),
+                                    fontSize: 13),
                               ),
                             ],
                           ),

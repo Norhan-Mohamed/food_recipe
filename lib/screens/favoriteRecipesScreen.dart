@@ -59,10 +59,10 @@ class _FavoriteRecipesScreenState extends State<FavoriteRecipesScreen> {
                     print(snapShot.data![index].image);
                     return Flexible(
                       child: Container(
+                          color: Color(0xffd0fee2),
                           padding: const EdgeInsets.all(8),
                           child: Center(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
                                   iconSize: 100,
