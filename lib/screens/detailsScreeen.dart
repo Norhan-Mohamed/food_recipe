@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:food_recipe_app/api.dart';
 import 'package:food_recipe_app/models/discription.dart';
 
@@ -170,13 +171,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           height: 15,
                           thickness: 2,
                         ),
-                        Text(
-                          snapShot.data!.summary.toString(),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                            letterSpacing: 1,
-                          ),
+                        Html(
+                          data: snapShot.data!.summary.toString(),
                         ),
                         Divider(
                           height: 10,

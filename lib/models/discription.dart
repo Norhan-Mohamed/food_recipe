@@ -5,14 +5,12 @@ class Description {
   late bool vegan;
   late bool glutenFree;
   late bool dairyFree;
-  //late bool veryHealthy;
   late bool cheap;
   late bool veryPopular;
   late bool sustainable;
   late bool lowFodmap;
   late int? weightWatcherSmartPoints;
   late String? gaps;
-  //late int? preparationMinutes;
   late int? cookingMinutes;
   late int? aggregateLikes;
   late int? healthScore;
@@ -29,7 +27,6 @@ class Description {
   late String? image;
   late String? imageType;
   late String? summary;
-  // late List<DishType>? dishType;
 
   Description({
     required this.image,
